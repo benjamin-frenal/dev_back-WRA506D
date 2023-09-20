@@ -11,7 +11,7 @@ class DemoController extends AbstractController
     #[Route('/demo', name: 'app_demo')]
     public function index(): Response
     {
-        return $this->render('demo/index.html.twig', [
+        return $this->render('demo/list.html.twig', [
             'controller_name' => 'DemoController',
         ]);
     }
