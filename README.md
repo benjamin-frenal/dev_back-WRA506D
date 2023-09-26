@@ -1,5 +1,6 @@
 # Requête pour ajouter un acteur et sa nationalité
 
+```
 {
   "firstName": "Benjamin",
   "lastName": "Frenal",
@@ -10,3 +11,4 @@
   ],
 	"nationalite": "/api/nationalites/53"
 }
+```
