@@ -5,8 +5,9 @@ namespace App\DataFixtures;
 use App\Entity\Movie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class MovieFixtures extends Fixture
+class MovieFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -19,10 +20,6 @@ class MovieFixtures extends Fixture
             $movie->setDuration(rand(60, 180));
             $movie->setDescription('Synopsis ' . $i);
             $movie->setCategory($this->getReference('category_' . rand(1, 5)));
-//            $movie->addActor($this->getReference('actor_' . rand(1, 10)));
-//            $movie->addActor($this->getReference('actor_' . rand(1, 10)));
-//            $movie->addActor($this->getReference('actor_' . rand(1, 10)));
-//            $movie->addActor($this->getReference('actor_' . rand(1, 10)));
 
             // Ajoute entre 2 et 6 acteurs dans le films, tous différents en se basant sur les fixtures
             $actors = [];
@@ -37,5 +34,11 @@ class MovieFixtures extends Fixture
             $manager->persist($movie);
         }
         $manager->flush();
+    }
+    public function getDependencies()
+    {
+        return [
+            ActorFixtures::class,
+        ];
     }
 }
