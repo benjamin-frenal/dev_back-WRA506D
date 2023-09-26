@@ -2,15 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MovieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: [
+        'groups' => ['movie:read']],
+)]
 class Movie
 {
     #[ORM\Id]
@@ -19,15 +24,19 @@ class Movie
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'movies')]
+    #[Groups(['movie:read'])]
     private ?Category $category = null;
 
     #[ORM\ManyToMany(targetEntity: Author::class, inversedBy: 'movies')]
+    #[Groups(['movie:read'])]
     private Collection $actors;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['category:read', 'movie:read'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['movie:read'])]
     private ?\DateTimeInterface $releaseDate = null;
 
     #[ORM\Column]
