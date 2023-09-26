@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
 #[ApiResource(
@@ -21,10 +23,12 @@ class Author
 
     #[ORM\Column(length: 50)]
     #[Groups(['movie:read', 'author:read'])]
+    #[Assert\Length(min: 2, max: 50, maxMessage: 'Ecrire votre message en 50 caractères ou moins.')]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 50)]
     #[Groups(['movie:read', 'author:read'])]
+    #[Assert\Length(min: 2, max: 50, maxMessage: 'Ecrire votre message en 50 caractères ou moins.')]
     private ?string $lastName = null;
 
     #[ORM\ManyToMany(targetEntity: Movie::class, mappedBy: 'actors')]
