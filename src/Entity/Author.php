@@ -18,9 +18,11 @@ class Author
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['movie:read'])]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['movie:read'])]
     private ?string $lastName = null;
 
     #[ORM\ManyToMany(targetEntity: Movie::class, mappedBy: 'actors')]
