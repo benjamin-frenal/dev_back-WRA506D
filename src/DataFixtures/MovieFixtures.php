@@ -36,7 +36,6 @@ class MovieFixtures extends Fixture
 
             $manager->persist($movie);
         }
-
         $manager->flush();
     }
 }

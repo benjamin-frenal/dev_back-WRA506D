@@ -13,8 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
 #[ApiResource(
-    normalizationContext: [
-        'groups' => ['movie:read']],
+    normalizationContext: ['groups' => ['movie:read']],
 )]
 class Movie
 {
@@ -40,9 +39,11 @@ class Movie
     private ?\DateTimeInterface $releaseDate = null;
 
     #[ORM\Column]
+    #[Groups(['movie:read'])]
     private ?int $duration = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['movie:read'])]
     private ?string $description = null;
 
     public function __construct()
