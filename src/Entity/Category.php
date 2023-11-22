@@ -10,14 +10,14 @@ use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => ['category:read']],)
-]
+    normalizationContext: ['groups' => ['category:read']]
+)]
 class Category
 {
     #[ORM\Id]
+    #[Groups(['category:read'])]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;

@@ -10,10 +10,10 @@ use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => ['author:read']],)]
+    normalizationContext: ['groups' => ['author:read']]
+)]
 class Author
 {
     #[ORM\Id]

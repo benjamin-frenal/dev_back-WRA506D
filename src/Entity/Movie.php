@@ -14,14 +14,14 @@ use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 
-
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => ['movie:read']],
+    normalizationContext: ['groups' => ['movie:read']]
 )]
 class Movie
 {
     #[ORM\Id]
+    #[Groups(['movie:read'])]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
@@ -55,6 +55,11 @@ class Movie
     #[Groups(['movie:read'])]
     #[Assert\NotBlank]
     private ?string $description = null;
+
+    #[ORM\Column]
+    #[Groups(['movie:read'])]
+    #[Assert\NotBlank]
+    private ?string $image = null;
 
     public function __construct()
     {
@@ -146,6 +151,18 @@ class Movie
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

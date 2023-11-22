@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: NationaliteRepository::class)]
 #[ApiResource(
-
+    normalizationContext: ['groups' => ['nationalite:read']],
 )]
 class Nationalite
 {
@@ -36,7 +36,7 @@ class Nationalite
         return $this->id;
     }
 
-    public function getNationalit�e(): ?string
+    public function getNationalite(): ?string
     {
         return $this->nationalite;
     }
