@@ -14,8 +14,10 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
 
         // Génere les données pour 10 acteurs avec un firstName et un lastName réaliste
 
-        $firstNames = ['Jean', 'Pierre', 'Paul', 'Jacques', 'Marie', 'Julie', 'Julien', 'Jeanne', 'Pierre', 'Pauline'];
-        $lastNames = ['Dupont', 'Durand', 'Duchemin', 'Duchesse', 'Duc', 'Ducroc', 'Ducrocq', 'Ducroq', 'Ducroque', 'Ducroquefort'];
+        $firstNames = ['Jean', 'Pierre', 'Paul', 'Jacques', 'Marie',
+            'Julie', 'Julien', 'Jeanne', 'Pierre', 'Pauline'];
+        $lastNames = ['Dupont', 'Durand', 'Duchemin', 'Duchesse', 'Duc',
+            'Ducroc', 'Ducrocq', 'Ducroq', 'Ducroque', 'Ducroquefort'];
 
         foreach (range(1, 10) as $i) {
             $actor = new Author();
@@ -23,7 +25,7 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
             $actor->setLastName($lastNames[rand(0, 9)]);
             $actor->setNationalite($this->getReference('nationalite_'.rand(1, 10)));
             $manager->persist($actor);
-            $this->addReference('actor_' . $i, $actor); // "expose" l'objet à l'extérieur de la classe pour les liaisons avec Movie
+            $this->addReference('actor_' . $i, $actor);
         }
 
         $manager->flush();
