@@ -2,9 +2,10 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Movie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use App\Entity\Movie;
+use DateTime;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class MovieFixtures extends Fixture implements DependentFixtureInterface
@@ -32,7 +33,7 @@ class MovieFixtures extends Fixture implements DependentFixtureInterface
         foreach ($this->movieImages as $title => $imagePath) {
             $movie = new Movie();
             $movie->setTitle($title);
-            $movie->setReleaseDate(new \DateTime());
+            $movie->setReleaseDate(new DateTime());
             $movie->setDuration(rand(60, 180));
             $movie->setDescription('Synopsis for ' . $title);
             $movie->setCategory($this->getReference('category_' . rand(1, 5)));

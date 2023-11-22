@@ -10,14 +10,14 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserFixtures extends Fixture
 {
     public function __construct(
-        protected UserPasswordHasherInterface $passwordHasherInterface
+        protected UserPasswordHasherInterface $hasher
     ) {
     }
     public function load(ObjectManager $manager): void
     {
         $user = new User();
         $user->setEmail('user@mail.com');
-        $user->setPassword($this->passwordHasherInterface->hashPassword(
+        $user->setPassword($this->hasher->hashPassword(
             $user,
             'test'
         ));
