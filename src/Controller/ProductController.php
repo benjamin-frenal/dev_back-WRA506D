@@ -20,8 +20,7 @@ class ProductController extends AbstractController
     #[Route("/product/slug", name: "app_product_slug")]
     public function slugProducts(
         Slugify $slugify,
-    ): Response
-    {
+    ): Response {
         $texte = $slugify->generateSlug('Ceci est une phrase en français');
         dd($texte); //Deboogger
 
@@ -38,4 +37,3 @@ class ProductController extends AbstractController
         ]);
     }
 }
-

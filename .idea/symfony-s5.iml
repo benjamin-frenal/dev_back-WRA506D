@@ -144,6 +144,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/form 2" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/intl 2" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/maker-bundle 2" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/squizlabs/php_codesniffer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/squizlabs/php_codesniffer 2" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
