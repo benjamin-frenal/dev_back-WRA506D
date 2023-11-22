@@ -22,6 +22,7 @@ use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 class Movie
 {
     #[ORM\Id]
+    #[Groups(['movie:read'])]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
@@ -55,6 +56,11 @@ class Movie
     #[Groups(['movie:read'])]
     #[Assert\NotBlank]
     private ?string $description = null;
+
+    #[ORM\Column]
+    #[Groups(['movie:read'])]
+    #[Assert\NotBlank]
+    private ?string $image = null;
 
     public function __construct()
     {
@@ -146,6 +152,18 @@ class Movie
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
