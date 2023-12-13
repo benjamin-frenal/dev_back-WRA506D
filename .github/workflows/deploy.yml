@@ -19,7 +19,7 @@ jobs:
         script: |
           cd public_html/travaux/wra506/
           git clone git@github.com:benjamin-frenal/dev_back-WRA506D.git
-          cd demo-symfony
+          cd dev_back-WRA506D
           git pull
           composer install
           php bin/console c:c
