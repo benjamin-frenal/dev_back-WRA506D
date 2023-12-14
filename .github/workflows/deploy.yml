@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Demo LS on VPS
+    - name: Deploy projet Symfony
       uses: appleboy/ssh-action@master
       with:
         HOST: ${{ secrets.HOST }}
@@ -18,6 +18,7 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
         script: |
           cd public_html/travaux/wra506/
+          rm -R dev_back-WRA506D
           git clone git@github.com:benjamin-frenal/dev_back-WRA506D.git
           cd dev_back-WRA506D
           git pull
