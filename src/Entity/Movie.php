@@ -60,7 +60,17 @@ class Movie
     #[ORM\Column]
     #[Groups(['movie:read'])]
     #[Assert\NotBlank]
-    private ?string $image = null;
+    private ?string $miniature = null;
+
+    #[ORM\Column]
+    #[Groups(['movie:read'])]
+    #[Assert\NotBlank]
+    private ?string $background = null;
+
+    #[ORM\Column]
+    #[Groups(['movie:read'])]
+    #[Assert\NotBlank]
+    private ?string $logo = null;
 
     public function __construct()
     {
@@ -156,14 +166,38 @@ class Movie
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getMiniature(): ?string
     {
-        return $this->image;
+        return $this->miniature;
     }
 
-    public function setImage(string $image): static
+    public function setMiniature(string $miniature): static
     {
-        $this->image = $image;
+        $this->miniature = $miniature;
+
+        return $this;
+    }
+
+    public function getBackground(): ?string
+    {
+        return $this->background;
+    }
+
+    public function setBackground(string $background): static
+    {
+        $this->background = $background;
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(string $logo): static
+    {
+        $this->logo = $logo;
 
         return $this;
     }
