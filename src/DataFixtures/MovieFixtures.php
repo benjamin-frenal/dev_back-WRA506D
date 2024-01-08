@@ -38,8 +38,8 @@ class MovieFixtures extends Fixture implements DependentFixtureInterface
             $movie->setDescription('Synopsis for ' . $title);
             $movie->setCategory($this->getReference('category_' . rand(1, 5)));
             $movie->setMiniature($imagePath);
-            $movie->setBackground('/src/assets/img/background/' . strtolower(str_replace(
-                [' ', "'"], ['-', ''], $title)) . '.jpeg');
+            $movie->setBackground('/src/assets/img/background/' .
+                strtolower(str_replace([' ', "'"], ['-', ''], $title)) . '.jpeg');
             $movie->setLogo('/src/assets/img/logo/' . strtolower(str_replace([' ', "'"], ['-', ''], $title)) . '.png');
 
             // Ajoute entre 2 et 6 acteurs dans le film, tous différents en se basant sur les fixtures
