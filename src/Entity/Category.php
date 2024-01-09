@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Category
 {
     #[ORM\Id]
-    #[Groups(['category:read'])]
+    #[Groups(['movie:read','category:read'])]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;

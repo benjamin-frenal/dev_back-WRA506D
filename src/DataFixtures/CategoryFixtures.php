@@ -11,7 +11,7 @@ class CategoryFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
-        $categories = ['Comédies', 'Animation', 'Documentaires', 'Drames',
+        $categories = ['Comedies', 'Animation', 'Documentaires', 'Drames',
             'Science-Fiction', 'Enfants', 'Action', 'Horreur', 'Thriller', 'Fantastique'];
 
         foreach ($categories as $i => $categoryName) {

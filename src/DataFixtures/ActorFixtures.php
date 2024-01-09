@@ -40,7 +40,7 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
             '/src/assets/img/acteurs/will_smith.webp',
         ];
 
-        foreach (range(1, 10) as $i) {
+        foreach (range(1, 24) as $i) {
             $actor = new Author();
             $actor->setFirstName($firstNames[$i - 1]);
             $actor->setLastName($lastNames[$i - 1]);
