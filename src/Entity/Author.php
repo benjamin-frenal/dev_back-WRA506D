@@ -31,6 +31,10 @@ class Author
     #[Assert\Length(min: 2, max: 50, maxMessage: 'Ecrire votre message en 50 caractères ou moins.')]
     private ?string $lastName = null;
 
+    #[ORM\Column(length: 255)]
+    #[Groups(['author:read'])]
+    private ?string $image = null;
+
     #[ORM\ManyToMany(targetEntity: Movie::class, mappedBy: 'actors')]
     #[Groups(['author:read'])]
     private Collection $movies;
@@ -110,5 +114,15 @@ class Author
         $this->nationalite = $nationalite;
 
         return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
     }
 }
