@@ -22,7 +22,7 @@ use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 class Movie
 {
     #[ORM\Id]
-    #[Groups(['movie:read'])]
+    #[Groups(['author:read','category:read','movie:read'])]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
@@ -36,7 +36,7 @@ class Movie
     private Collection $actors;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['category:read', 'movie:read'])]
+    #[Groups(['author:read', 'category:read', 'movie:read'])]
     #[Assert\Length(min: 2, max: 255, maxMessage: 'Ecrire votre message en 255 caractères ou moins.')]
     #[ApiFilter(SearchFilter::class, strategy: 'partial')]
     private ?string $title = null;
@@ -53,12 +53,12 @@ class Movie
     private ?int $duration = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['movie:read'])]
+    #[Groups(['author:read','category:read','movie:read'])]
     #[Assert\NotBlank]
     private ?string $description = null;
 
     #[ORM\Column]
-    #[Groups(['movie:read'])]
+    #[Groups(['author:read','category:read','movie:read'])]
     #[Assert\NotBlank]
     private ?string $miniature = null;
 
