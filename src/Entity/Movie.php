@@ -28,11 +28,11 @@ class Movie
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'movies')]
-    #[Groups(['movie:read'])]
+    #[Groups(['movie:read', 'category:read'])]
     private ?Category $category = null;
 
     #[ORM\ManyToMany(targetEntity: Author::class, inversedBy: 'movies')]
-    #[Groups(['movie:read'])]
+    #[Groups(['movie:read', 'category:read'])]
     private Collection $actors;
 
     #[ORM\Column(length: 255)]
@@ -42,12 +42,12 @@ class Movie
     private ?string $title = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Groups(['movie:read'])]
+    #[Groups(['movie:read', 'category:read'])]
     #[Assert\NotBlank]
     private ?\DateTimeInterface $releaseDate = null;
 
     #[ORM\Column]
-    #[Groups(['movie:read'])]
+    #[Groups(['movie:read', 'category:read'])]
     #[Assert\NotBlank]
     #[ApiFilter(RangeFilter::class)]
     private ?int $duration = null;
