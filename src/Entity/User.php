@@ -2,34 +2,78 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ApiResource(
+    normalizationContext: ['groups' => ['user:read']],
+)]
+#[ApiFilter(SearchFilter::class, properties: ['id' => 'exact', 'email' => 'exact'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['user:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Groups(['user:read'])]
+    private ?string $firstName = null;
+
+    #[ORM\Column(length: 180, unique: true)]
+    #[Groups(['user:read'])]
+    private ?string $lastName = null;
+
+    #[ORM\Column(length: 180, unique: true)]
+    #[Groups(['user:read'])]
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Groups(['user:read'])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(['user:read'])]
     private ?string $password = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(?string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
     }
 
     public function getEmail(): ?string
