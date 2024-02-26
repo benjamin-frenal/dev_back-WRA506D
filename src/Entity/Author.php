@@ -39,9 +39,7 @@ class Author
     #[Groups(['author:read'])]
     private ?string $fullName = null;
 
-    #[ORM\Column(length: 255)]
-    #[Groups(['author:read'])]
-    private ?string $image = null;
+
 
     #[ORM\ManyToMany(targetEntity: Movie::class, mappedBy: 'actors')]
     #[Groups(['author:read'])]
@@ -50,6 +48,10 @@ class Author
     #[ORM\ManyToOne(inversedBy: 'actor')]
     #[Groups(['author:read'])]
     private ?Nationalite $nationalite = null;
+
+    #[ORM\ManyToOne(targetEntity: MediaObject::class)]
+    #[ORM\JoinColumn(name: "image_id", referencedColumnName: "id")]
+    private ?MediaObject $image = null;
 
     public function __construct()
     {
@@ -143,13 +145,14 @@ class Author
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage(): ?MediaObject
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): void
+    public function setImage(?MediaObject $image): self
     {
         $this->image = $image;
+        return $this;
     }
 }

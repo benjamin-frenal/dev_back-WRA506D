@@ -45,7 +45,6 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
             $actor->setFirstName($firstNames[$i - 1]);
             $actor->setLastName($lastNames[$i - 1]);
             $actor->setNationalite($this->getReference('nationalite_'.rand(1, 10)));
-            $actor->setImage($imageUrls[$i - 1]);
             $manager->persist($actor);
             $this->addReference('actor_' . $i, $actor);
         }
