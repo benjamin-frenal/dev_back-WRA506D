@@ -17,7 +17,7 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
         script: |
-          cd public_html/travaux/wra506/
+          cd public_html/wra506/
           rm -R dev_back-WRA506D
           git clone git@github.com:benjamin-frenal/dev_back-WRA506D.git
           cd dev_back-WRA506D
