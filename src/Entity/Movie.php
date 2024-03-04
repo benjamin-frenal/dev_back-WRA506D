@@ -57,20 +57,22 @@ class Movie
     #[Assert\NotBlank]
     private ?string $description = null;
 
-    #[ORM\Column]
     #[Groups(['author:read','category:read','movie:read'])]
     #[Assert\NotBlank]
-    private ?string $miniature = null;
+    #[ORM\ManyToOne(targetEntity: MediaObject::class)]
+    #[ORM\JoinColumn(name: "miniature", referencedColumnName: "id")]
+    private ?MediaObject $miniature = null;
 
-    #[ORM\Column]
     #[Groups(['movie:read'])]
     #[Assert\NotBlank]
-    private ?string $background = null;
+    #[ORM\ManyToOne(targetEntity: MediaObject::class)]
+    #[ORM\JoinColumn(name: "background", referencedColumnName: "id")]
+    private ?MediaObject $background = null;
 
-    #[ORM\Column]
     #[Groups(['movie:read'])]
-    #[Assert\NotBlank]
-    private ?string $logo = null;
+    #[ORM\ManyToOne(targetEntity: MediaObject::class)]
+    #[ORM\JoinColumn(name: "logo", referencedColumnName: "id")]
+    private ?MediaObject $logo = null;
 
     public function __construct()
     {
@@ -166,36 +168,36 @@ class Movie
         return $this;
     }
 
-    public function getMiniature(): ?string
+    public function getMiniature(): ?MediaObject
     {
         return $this->miniature;
     }
 
-    public function setMiniature(string $miniature): static
+    public function setMiniature(?MediaObject $miniature): static
     {
         $this->miniature = $miniature;
 
         return $this;
     }
 
-    public function getBackground(): ?string
+    public function getBackground(): ?MediaObject
     {
         return $this->background;
     }
 
-    public function setBackground(string $background): static
+    public function setBackground(?MediaObject $background): static
     {
         $this->background = $background;
 
         return $this;
     }
 
-    public function getLogo(): ?string
+    public function getLogo(): ?MediaObject
     {
         return $this->logo;
     }
 
-    public function setLogo(string $logo): static
+    public function setLogo(?MediaObject $logo): static
     {
         $this->logo = $logo;
 
